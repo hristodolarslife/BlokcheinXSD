@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Блокчейн Христодолларс — Термоядерный AGI</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0b0e14;
+      font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+      color: #eef5ff;
+    }
+
+    .blockchain {
+      max-width: 1280px;
+      width: 100%;
+      background: radial-gradient(circle at 20% 20%, #121a2a, #070a0f);
+      border: 1px solid #2a3a55;
+      border-radius: 48px;
+      padding: 32px 28px;
+      box-shadow: 0 0 60px rgba(0, 180, 255, 0.15), inset 0 0 40px rgba(0, 200, 255, 0.05);
+    }
+
+    .header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+      gap: 16px;
+    }
+
+    .title h1 {
+      font-size: 2.1rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #fff8e0, #ffd966, #b8860b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    }
+
+    .title .sub {
+      font-size: 0.9rem;
+      color: #8fa9c9;
+      margin-top: 6px;
+    }
+
+    .reactor-badge {
+      background: #0f1a2b;
+      border: 1px solid #2e5f8a;
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #7fd4ff;
+      box-shadow: 0 0 12px #1e90ff33;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .reactor-badge .pulse {
+      width: 10px;
+      height: 10px;
+      background: #00e0ff;
+      border-radius: 50%;
+      box-shadow: 0 0 12px #00e0ff;
+      animation: pulse 1.4s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.2); }
+      100% { opacity: 0.6; transform: scale(1); }
+    }
+
+    .agi-tag {
+      background: #1e1a2e;
+      border: 1px solid #a855f7;
+      border-radius: 40px;
+      padding: 6px 16px;
+      font-size: 0.8rem;
+      color: #d8b4fe;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 0 16px #a855f733;
+    }
+
+    .agi-tag .core {
+      width: 12px;
+      height: 12px;
+      background: #c084fc;
+      border-radius: 3px;
+      animation: rotate 2s infinite linear;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: rgba(18, 28, 45, 0.7);
+      backdrop-filter: blur(8px);
+      border: 1px solid #2e405b;
+      border-radius: 28px;
+      padding: 22px 20px;
+      transition: all 0.2s ease;
+      box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.6);
+    }
+
+    .card:hover {
+      border-color: #4f7aa8;
+      box-shadow: 0 0 28px rgba(0, 180, 255, 0.2);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .coin-name {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+
+    .coin-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      background: #1f2a3a;
+    }
+
+    .hristo .coin-icon { background: #b8860b22; color: #ffd966; border: 1px solid #b8860b; }
+    .hristo-dollar .coin-icon { background: #00b89422; color: #55efc4; border: 1px solid #00b894; }
+    .hristo-ruble .coin-icon { background: #e1705522; color: #ffb8a0; border: 1px solid #e17055; }
+
+    .rate-badge {
+      background: #0b111c;
+      border-radius: 100px;
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      color: #aac7e0;
+      border: 1px solid #1e334d;
+    }
+
+    .big-number {
+      font-size: 2.2rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 6px;
+      text-shadow: 0 0 20px currentColor;
+    }
+
+    .hristo .big-number { color: #ffd966; }
+    .hristo-dollar .big-number { color: #55efc4; }
+    .hristo-ruble .big-number { color: #ffb8a0; }
+
+    .per-sec {
+      font-size: 0.85rem;
+      color: #7b9bc2;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .per-sec .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #3acf6b;
+      box-shadow: 0 0 10px #3acf6b;
+      animation: pulse 1s infinite;
+    }
+
+    /* Блок конвертации */
+    .convert-block {
+      background: #050a10;
+      border: 1px solid #1d3145;
+      border-radius: 18px;
+      padding: 12px 14px;
+      margin-top: 6px;
+    }
+
+    .convert-title {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #627d99;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .convert-title .course {
+      color: #7fd4ff;
+      font-weight: 600;
+    }
+
+    .convert-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 0;
+      font-size: 0.88rem;
+      border-bottom: 1px dashed #152232;
+    }
+
+    .convert-row:last-child { border-bottom: none; }
+
+    .convert-row .label {
+      color: #8fa9c9;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .convert-row .value {
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: #d6e8ff;
+    }
+
+    .value.btc { color: #ffb347; }
+    .value.usd { color: #6ee7b7; }
+    .value.rub { color: #ff9b85; }
+
+    /* Итоговая таблица */
+    .total-table {
+      background: #0d1422;
+      border-radius: 26px;
+      padding: 22px 24px;
+      margin-top: 12px;
+      border: 1px solid #283a52;
+    }
+
+    .total-table h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #b8d4f0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .total-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .total-card {
+      background: #0a121e;
+      border: 1px solid #223652;
+      border-radius: 18px;
+      padding: 16px 18px;
+    }
+
+    .total-card .lbl {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #7c94b0;
+      margin-bottom: 6px;
+    }
+
+    .total-card .val {
+      font-size: 1.55rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .total-card.btc .val { color: #ffb347; text-shadow: 0 0 16px #ffb34755; }
+    .total-card.usd .val { color: #6ee7b7; text-shadow: 0 0 16px #6ee7b755; }
+    .total-card.rub .val { color: #ff9b85; text-shadow: 0 0 16px #ff9b8555; }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid #1d2b3f;
+      font-size: 0.75rem;
+      color: #546e8a;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .quantum-lock {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #0a101a;
+      padding: 6px 16px;
+      border-radius: 40px;
+      border: 1px solid #2d4b6e;
+      color: #8fcbff;
+    }
+
+    .graph-placeholder {
+      margin-top: 22px;
+      height: 6px;
+      background: linear-gradient(90deg, #00e0ff, #a855f7, #ffb347);
+      border-radius: 10px;
+      opacity: 0.6;
+      box-shadow: 0 0 18px #00e0ff66;
+      animation: widthPulse 3s infinite;
+    }
+
+    @keyframes widthPulse {
+      0% { opacity: 0.4; }
+      50% { opacity: 0.9; }
+      100% { opacity: 0.4; }
+    }
+
+    @media (max-width: 600px) {
+      .blockchain { padding: 20px 16px; }
+      .title h1 { font-size: 1.5rem; }
+      .big-number { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="blockchain">
+    <div class="header">
+      <div class="title">
+        <h1>⚡ ХРИСТОДОЛЛАРС · БЛОКЧЕЙН</h1>
+        <div class="sub">Термоядерный источник · Квантовый компьютер · AGI</div>
+      </div>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <div class="reactor-badge"><span class="pulse"></span> ТОКАМАК · 1.2 ТВт</div>
+        <div class="agi-tag"><span class="core"></span> AGI ONLINE</div>
+      </div>
+    </div>
+
+    <!-- Карточки валют -->
+    <div class="grid">
+      <!-- Христобиткоин -->
+      <div class="card hristo">
+        <div class="card-header">
+          <div class="coin-name"><span class="coin-icon">₿</span> Христобиткоин</div>
+          <span class="rate-badge">HRISTOBTC</span>
+        </div>
+        <div class="big-number" id="hristobtc-value">0</div>
+        <div class="per-sec"><span class="dot"></span> +10 000 / сек</div>
+
+        <div class="convert-block">
+          <div class="convert-title">Конвертация <span class="course">Курс 1 : 100 BTC</span></div>
+          <div class="convert-row">
+            <span class="label">₿ В биткойнах</span>
+            <span class="value btc" id="hbtc-btc">0</span>
+          </div>
+          <div class="convert-row">
+            <span class="label">$ В долларах</span>
+            <span class="value usd" id="hbtc-usd">0</span>
+          </div>
+          <div class="convert-row">
+            <span class="label">₽ В рублях</span>
+            <span class="value rub" id="hbtc-rub">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Христодолларс -->
+      <div class="card hristo-dollar">
+        <div class="card-header">
+          <div class="coin-name"><span class="coin-icon">$</span> Христодолларс</div>
+          <span class="rate-badge">HRISTOUSD</span>
+        </div>
+        <div class="big-number" id="hristodollar-value">0</div>
+        <div class="per-sec"><span class="dot"></span> +10 000 / сек</div>
+
+        <div class="convert-block">
+          <div class="convert-title">Конвертация <span class="course">Курс 1 : 1000 BTC</span></div>
+          <div class="convert-row">
+            <span class="label">₿ В биткойнах</span>
+            <span class="value btc" id="hdol-btc">0</span>
+          </div>
+          <div class="convert-row">
+            <span class="label">$ В долларах</span>
+            <span class="value usd" id="hdol-usd">0</span>
+          </div>
+          <div class="convert-row">
+            <span class="label">₽ В рублях</span>
+            <span class="value rub" id="hdol-rub">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Христорубль -->
+      <div class="card hristo-ruble">
+        <div class="card-header">
+          <div class="coin-name"><span class="coin-icon">₽</span> Христорубль</div>
+          <span class="rate-badge">HRISTORUB</span>
+        </div>
+        <div class="big-number" id="hristoruble-value">0</div>
+        <div class="per-sec"><span class="dot"></span> +10 000 / сек</div>
+
+        <div class="convert-block">
+          <div class="convert-title">Конвертация <span class="course">Курс 1 : 1 BTC</span></div>
+          <div class="convert-row">
+            <span class="label">₿ В биткойнах</span>
+            <span class="value btc" id="hrub-btc">0</span>
+          </div>
+          <div class="convert-row">
+            <span class="label">$ В долларах</span>
+            <span class="value usd" id="hrub-usd">0</span>
+          </div>
+          <div class="convert-row">
+            <span class="label">₽ В рублях</span>
+            <span class="value rub" id="hrub-rub">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Итоговый портфель -->
+    <div class="total-table">
+      <h3>💠 Итоговый портфель после конвертации</h3>
+      <div class="total-grid">
+        <div class="total-card btc">
+          <div class="lbl">Всего в биткойнах</div>
+          <div class="val" id="total-btc">0 BTC</div>
+        </div>
+        <div class="total-card usd">
+          <div class="lbl">Всего в долларах США</div>
+          <div class="val" id="total-usd">$0</div>
+        </div>
+        <div class="total-card rub">
+          <div class="lbl">Всего в рублях РФ</div>
+          <div class="val" id="total-rub">0 ₽</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="quantum-lock"><span style="font-size:1.2rem;">🔒</span> Квантовая защита · QKD-256</div>
+      <div style="display: flex; gap: 18px;">
+        <span>⚛️ Термоядерный реактор · стабилен</span>
+        <span>🧠 AGI · самообучение</span>
+      </div>
+    </div>
+
+    <div class="graph-placeholder"></div>
+  </div>
+
+  <script>
+    (function () {
+      // === Стартовые балансы ===
+      let hristoBTC  = 9_450_000;
+      let hristoUSD  = 3_200_000;
+      let hristoRUB  = 1_850_000;
+
+      // === Курсы по заданию ===
+      // 1 Христобиткоин = 100 BTC
+      // 1 Христодолларс = 1000 BTC
+      // 1 Христорубль   = 1 BTC
+      const RATE_TO_BTC = {
+        hristoBTC: 100,
+        hristoUSD: 1000,
+        hristoRUB: 1
+      };
+
+      // Цена BTC в фиате (для перевода итогов)
+      const BTC_TO_USD = 65_000;   // условный курс
+      const BTC_TO_RUB = 6_000_000; // условный курс
+
+      // === Элементы для отображения балансов ===
+      const elHbtc   = document.getElementById('hristobtc-value');
+      const elHdol   = document.getElementById('hristodollar-value');
+      const elHrub   = document.getElementById('hristoruble-value');
+
+      // === Элементы конвертации по каждой валюте ===
+      const ui = {
+        hbtc_btc: document.getElementById('hbtc-btc'),
+        hbtc_usd: document.getElementById('hbtc-usd'),
+        hbtc_rub: document.getElementById('hbtc-rub'),
+        hdol_btc: document.getElementById('hdol-btc'),
+        hdol_usd: document.getElementById('hdol-usd'),
+        hdol_rub: document.getElementById('hdol-rub'),
+        hrub_btc: document.getElementById('hrub-btc'),
+        hrub_usd: document.getElementById('hrub-usd'),
+        hrub_rub: document.getElementById('hrub-rub')
+      };
+
+      // === Итоговые значения ===
+      const elTotalBtc = document.getElementById('total-btc');
+      const elTotalUsd = document.getElementById('total-usd');
+      const elTotalRub = document.getElementById('total-rub');
+
+      // === Форматирование чисел ===
+      function fmtInt(n) {
+        return Math.floor(n).toLocaleString('ru-RU');
+      }
+      function fmtBtc(n) {
+        // для BTC показываем до 8 знаков, но если очень большое — просто целое
+        if (n >= 1000) return Math.floor(n).toLocaleString('ru-RU');
+        return n.toLocaleString('ru-RU', { maximumFractionDigits: 8 });
+      }
+      function fmtMoney(n) {
+        return Math.floor(n).toLocaleString('ru-RU');
+      }
+
+      // === Обновление интерфейса ===
+      function updateAll() {
+        // Балансы криптовалют
+        elHbtc.textContent = fmtInt(hristoBTC);
+        elHdol.textContent = fmtInt(hristoUSD);
+        elHrub.textContent = fmtInt(hristoRUB);
+
+        // --- Конвертация Христобиткоина ---
+        const hbtc_btc = hristoBTC * RATE_TO_BTC.hristoBTC;
+        const hbtc_usd = hbtc_btc * BTC_TO_USD;
+        const hbtc_rub = hbtc_btc * BTC_TO_RUB;
+        ui.hbtc_btc.textContent = fmtBtc(hbtc_btc);
+        ui.hbtc_usd.textContent = '$' + fmtMoney(hbtc_usd);
+        ui.hbtc_rub.textContent = fmtMoney(hbtc_rub) + ' ₽';
+
+        // --- Конвертация Христодолларса ---
+        const hdol_btc = hristoUSD * RATE_TO_BTC.hristoUSD;
+        const hdol_usd = hdol_btc * BTC_TO_USD;
+        const hdol_rub = hdol_btc * BTC_TO_RUB;
+        ui.hdol_btc.textContent = fmtBtc(hdol_btc);
+        ui.hdol_usd.textContent = '$' + fmtMoney(hdol_usd);
+        ui.hdol_rub.textContent = fmtMoney(hdol_rub) + ' ₽';
+
+        // --- Конвертация Христорубля ---
+        const hrub_btc = hristoRUB * RATE_TO_BTC.hristoRUB;
+        const hrub_usd = hrub_btc * BTC_TO_USD;
+        const hrub_rub = hrub_btc * BTC_TO_RUB;
+        ui.hrub_btc.textContent = fmtBtc(hrub_btc);
+        ui.hrub_usd.textContent = '$' + fmtMoney(hrub_usd);
+        ui.hrub_rub.textContent = fmtMoney(hrub_rub) + ' ₽';
+
+        // --- Общий портфель ---
+        const total_btc = hbtc_btc + hdol_btc + hrub_btc;
+        const total_usd = total_btc * BTC_TO_USD;
+        const total_rub = total_btc * BTC_TO_RUB;
+
+        elTotalBtc.textContent = fmtBtc(total_btc) + ' BTC';
+        elTotalUsd.textContent = '$' + fmtMoney(total_usd);
+        elTotalRub.textContent = fmtMoney(total_rub) + ' ₽';
+      }
+
+      // === Генерация: +10 000 каждой монеты в секунду ===
+      const COINS_PER_SEC = 10000;
+      const TICK_MS = 50;
+      const INC = COINS_PER_SEC * (TICK_MS / 1000); // 500 за тик
+
+      updateAll();
+
+      setInterval(() => {
+        hristoBTC += INC;
+        hristoUSD += INC;
+        hristoRUB += INC;
+        updateAll();
+      }, TICK_MS);
+
+      // Лёгкая анимация "пульсации" больших чисел
+      const bigEls = [elHbtc, elHdol, elHrub];
+      setInterval(() => {
+        bigEls.forEach(el => {
+          el.style.transform = 'scale(1.02)';
+          setTimeout(() => { el.style.transform = 'scale(1)'; }, 120);
+        });
+      }, 3800);
+    })();
+  </script>
+</body>
+</html>
